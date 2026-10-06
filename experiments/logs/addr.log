@@ -1,0 +1,48 @@
+=== python emb_encode.py addr_full (18:29)
+12850338 unique names (12s)
+  200000/12850338 (188s, eta 198 min)
+  1200000/12850338 (477s, eta 77 min)
+  2200000/12850338 (823s, eta 66 min)
+  3200000/12850338 (1186s, eta 60 min)
+  4200000/12850338 (1582s, eta 54 min)
+  5200000/12850338 (1988s, eta 49 min)
+  6200000/12850338 (2466s, eta 44 min)
+  7200000/12850338 (2800s, eta 37 min)
+  8200000/12850338 (3161s, eta 30 min)
+  9200000/12850338 (3566s, eta 24 min)
+  10200000/12850338 (4032s, eta 17 min)
+  11200000/12850338 (4430s, eta 11 min)
+  12200000/12850338 (4831s, eta 4 min)
+EMB_DONE 12850338 names in 5081s
+=== python emb_complete.py test e12g (19:54)
+embedded 77 new names
+persisted 77 new names (total 12850415)
+=== python emb_pairs.py trainsim (19:55)
+wrote <root>\work\emba_feat_trainsim.parquet: 11157988 pairs; cos mean 0.671
+=== python stage2_emb.py train (19:56)
+frame 11157988 pairs, 84 features (14s)
+fold 0: iters=1486 logloss=0.04150 (775s)
+fold 1: iters=1244 logloss=0.04268 (1420s)
+emb feature ranks: [(5, 'emb_sib_same_src'), (6, 'emb_gap_p'), (14, 'emb_sib_w'), (20, 'emb_rank_s1'), (25, 'emb_cos'), (28, 'emb_sib_max'), (34, 'emba_gap_p'), (40, 'emba_gap_s1'), (43, 'emba_cos'), (48, 'emb_gap_s1'), (62, 'emba_rank_s1')]
+  [s12 (no emb)        ] owner+expF F0.5 = 0.98575
+  [s12a (with LaBSE)   ] owner+expF F0.5 = 0.98623
+  [s12ens              ] owner+expF F0.5 = 0.98581
+  [(s12a + s12ens)/2   ] owner+expF F0.5 = 0.98606
+     India prob: 0.98440
+     India pm: 0.98500
+     US prob: 0.98665
+     US pm: 0.98705
+EMB_TRAIN_DONE (1546s)
+=== python emb_pairs.py test e12g (20:22)
+wrote <root>\work\emba_feat_test.parquet: 8588229 pairs; cos mean 0.693
+=== python stage2_emb.py test e12g s12ag (20:22)
+Store(test) built in 75s
+EMB_TEST_DONE test_scored_s12ag (611s)
+=== python -c 
+import polars as pl
+from config import WORK
+from recalibrate import recalibrate
+recalibrate(pl.read_parquet(WORK + '/test_scored_s12ag.parquet'), pl.read_parquet(WORK + '/oof_s12a.parquet', columns=['s1_row','p_row','prob'])).write_parquet(WORK + '/test_scored_s12agr.parquet')
+ (20:33)
+train mismatch rate 0.1006; test rates {'US': 0.1286, 'India': 0.064, 'France': 0.0088}; factors for unseen countries {'France': 0.08761039340879506}
+ADDR_DONE (20:35)

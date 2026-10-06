@@ -1,0 +1,7 @@
+train s1: 2206821 rows in 5s
+train s2: 5034616 rows in 53s
+train s3: 5285603 rows in 61s
+test s1: 1732544 rows in 10s
+test s2: 4887273 rows in 101s
+test s3: 5082316 rows in 88s
+trainsim: kept 1793475/2206821 S1 entities; pool/S1 = 5.754

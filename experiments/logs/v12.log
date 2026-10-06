@@ -1,0 +1,209 @@
+trainsim: kept 2206821/2206821 S1 entities; pool/S1 = 4.677
+S2: +1410531 decoy records
+S3: +1008307 decoy records
+decoy entities 1621496 (0.735 per S1), records 2418838; same-number+marker 227696, with marker 644972
+SIGNATURE [('India', 5091778, 0.0241, 0.0286, 0.0065, 883188, 5.765), ('US', 7647279, 0.029, 0.0348, 0.0102, 1323633, 5.777)]
+=== python blocking.py trainsim --k_fwd 20 --k_rev 6 --max_df 3000 --char_w 0.5 --combo_w 1.0 (07:44)
+<root>\code\business_entity_resolution\src\blocking.py:79: DeprecationWarning: the string cache has been replaced by pl.Categories
+  [trainsim] India: S1=883188 pool=5091778 vocab=5743933 nnz/row=17.8/17.1 build=168s topk=338s cands=36739039 (41.6/S1)
+--- restarted with lean blocking (08:19)
+=== python blocking.py trainsim --k_fwd 20 --k_rev 6 --max_df 3000 --char_w 0.5 --combo_w 1.0 (08:19)
+<root>\code\business_entity_resolution\src\blocking.py:82: DeprecationWarning: the string cache has been replaced by pl.Categories
+  [trainsim] India: S1=883188 pool=5091778 vocab=5743933 nnz/row=17.8/17.1 build=149s topk=181s cands=36739039 (41.6/S1)
+  [trainsim] US: S1=1323633 pool=7647279 vocab=8488743 nnz/row=14.1/13.5 build=276s topk=286s cands=55664376 (42.1/S1)
+[trainsim] total candidates 92403415 (41.87/S1) in 927s
+trainsim pair recall=0.98522  cands/S1=41.87  by country: {'US': 0.98688, 'India': 0.98274}
+=== python build_features.py trainsim trainsim_cand.parquet (08:35)
+labels: 7525476 positives / 92403415 pairs (GT pairs 7638365, blocking recall 0.98522)
+phase A done in 130s (92403415 pairs)
+Store(trainsim) built in 122s
+(Deprecated in version 1.42.1)
+  part 0: 2000000 pairs in 22s
+  part 1: 2000000 pairs in 21s
+  part 2: 2000000 pairs in 20s
+  part 3: 2000000 pairs in 51s
+  part 4: 2000000 pairs in 25s
+  part 5: 2000000 pairs in 77s
+  part 6: 2000000 pairs in 106s
+  part 7: 2000000 pairs in 50s
+  part 8: 2000000 pairs in 127s
+  part 9: 2000000 pairs in 32s
+  part 10: 2000000 pairs in 47s
+  part 11: 2000000 pairs in 125s
+  part 12: 2000000 pairs in 38s
+  part 13: 2000000 pairs in 26s
+  part 14: 2000000 pairs in 24s
+  part 15: 2000000 pairs in 25s
+  part 16: 2000000 pairs in 25s
+  part 17: 2000000 pairs in 24s
+  part 18: 2000000 pairs in 46s
+  part 19: 2000000 pairs in 46s
+  part 20: 2000000 pairs in 73s
+  part 21: 2000000 pairs in 77s
+  part 22: 2000000 pairs in 29s
+  part 23: 2000000 pairs in 25s
+  part 24: 2000000 pairs in 26s
+  part 25: 2000000 pairs in 25s
+  part 26: 2000000 pairs in 25s
+  part 27: 2000000 pairs in 23s
+  part 28: 2000000 pairs in 23s
+  part 29: 2000000 pairs in 24s
+  part 30: 2000000 pairs in 25s
+  part 31: 2000000 pairs in 25s
+  part 32: 2000000 pairs in 23s
+  part 33: 2000000 pairs in 21s
+  part 34: 2000000 pairs in 21s
+  part 35: 2000000 pairs in 22s
+  part 36: 2000000 pairs in 23s
+  part 37: 2000000 pairs in 23s
+  part 38: 2000000 pairs in 36s
+  part 39: 2000000 pairs in 21s
+  part 40: 2000000 pairs in 25s
+  part 41: 2000000 pairs in 22s
+  part 42: 2000000 pairs in 23s
+  part 43: 2000000 pairs in 26s
+  part 44: 2000000 pairs in 109s
+  part 45: 2000000 pairs in 31s
+  part 46: 403415 pairs in 5s
+[trainsim] features done in 1912s
+=== python train_lgb.py m12 (09:09)
+71 features
+fold 0: train 11006324 pairs (0.0813 pos), valid 562811
+  _log_warning("Overriding the parameters from Reference Dataset.")
+[100]	valid_0's binary_logloss: 0.0109894
+[200]	valid_0's binary_logloss: 0.0102887
+[300]	valid_0's binary_logloss: 0.0101566
+[400]	valid_0's binary_logloss: 0.010066
+fold 0: best_iter=416 logloss=0.01005 in 357s
+fold 1: train 10990599 pairs (0.0813 pos), valid 570009
+[100]	valid_0's binary_logloss: 0.011258
+[200]	valid_0's binary_logloss: 0.0106299
+[300]	valid_0's binary_logloss: 0.010517
+[400]	valid_0's binary_logloss: 0.0104857
+fold 1: best_iter=376 logloss=0.01048 in 298s
+top features: [('blk_margin_p', 10283), ('blk_rank_p', 4005), ('num_first_dlev', 2194), ('p_marker_extra', 618), ('blk_gap_pmax', 572), ('a_tset', 503), ('num_first_absdiff', 481), ('num_absdiff', 364), ('blk_cos', 350), ('num_f2', 213), ('n_jw', 188), ('n_join_partial', 187), ('n_w2', 169), ('n_full', 161), ('p_name_unseen', 147), ('num_f1', 111), ('n_tsort', 107), ('name_f1_s1', 98), ('addr_fp_p', 98), ('a_common', 96), ('num_n2', 96), ('n_join_full', 90), ('a_w2', 78), ('blk_gap_s1max', 78), ('name_fp_p', 74), ('a_wj', 60), ('n_miss', 56), ('a_ratio', 55), ('num_first_lendiff', 53), ('a_partial', 53)]
+OOF rows 92403415
+=== python eval_oof.py m12 (09:27)
+S1 entities 2206821, GT pairs 7638365, candidate positives 7525476 (blocking recall 0.9852)
+  excl+thr0.3        F0.5 = 0.97051
+  excl+thr0.4        F0.5 = 0.97379
+  excl+thr0.5        F0.5 = 0.97594
+  excl+thr0.6        F0.5 = 0.97715
+  excl+thr0.7        F0.5 = 0.97752
+  excl+thr0.8        F0.5 = 0.97688
+  thr0.5(no excl)    F0.5 = 0.97461
+  excl+expF          F0.5 = 0.97750
+  owner+thr0.4       F0.5 = 0.97502
+  owner+thr0.5       F0.5 = 0.97688
+  owner+thr0.6       F0.5 = 0.97774
+  owner+expF         F0.5 = 0.97787
+  [owner+expF] US: 0.97949
+  [owner+expF] India: 0.97544
+=== python build_features.py test test_cand.parquet (09:30)
+phase A done in 52s (72858044 pairs)
+Store(test) built in 88s
+(Deprecated in version 1.42.1)
+  part 0: 2000000 pairs in 23s
+  part 1: 2000000 pairs in 33s
+  part 2: 2000000 pairs in 90s
+  part 3: 2000000 pairs in 30s
+  part 4: 2000000 pairs in 43s
+  part 5: 2000000 pairs in 44s
+  part 6: 2000000 pairs in 32s
+  part 7: 2000000 pairs in 33s
+  part 8: 2000000 pairs in 32s
+  part 9: 2000000 pairs in 31s
+  part 10: 2000000 pairs in 26s
+  part 11: 2000000 pairs in 20s
+  part 12: 2000000 pairs in 20s
+  part 13: 2000000 pairs in 21s
+  part 14: 2000000 pairs in 20s
+  part 15: 2000000 pairs in 21s
+  part 16: 2000000 pairs in 24s
+  part 17: 2000000 pairs in 24s
+  part 18: 2000000 pairs in 19s
+  part 19: 2000000 pairs in 18s
+  part 20: 2000000 pairs in 19s
+  part 21: 2000000 pairs in 21s
+  part 22: 2000000 pairs in 20s
+  part 23: 2000000 pairs in 19s
+  part 24: 2000000 pairs in 19s
+  part 25: 2000000 pairs in 19s
+  part 26: 2000000 pairs in 19s
+  part 27: 2000000 pairs in 19s
+  part 28: 2000000 pairs in 19s
+  part 29: 2000000 pairs in 19s
+  part 30: 2000000 pairs in 20s
+  part 31: 2000000 pairs in 21s
+  part 32: 2000000 pairs in 22s
+  part 33: 2000000 pairs in 20s
+  part 34: 2000000 pairs in 18s
+  part 35: 2000000 pairs in 19s
+  part 36: 858044 pairs in 8s
+[test] features done in 1013s
+=== python predict_test.py m12 ownerF (09:48)
+scored 72858044 test pairs in 472s
+shape: (3, 3)
+┌─────────┬─────────────┬────────────┐
+│ country ┆ pred_per_s1 ┆ empty_frac │
+│ ---     ┆ ---         ┆ ---        │
+│ str     ┆ f64         ┆ f64        │
+╞═════════╪═════════════╪════════════╡
+│ US      ┆ 3.31255     ┆ 0.055457   │
+│ France  ┆ 3.350986    ┆ 0.049285   │
+│ India   ┆ 3.271345    ┆ 0.05627    │
+└─────────┴─────────────┴────────────┘
+wrote 1732544 matching rows (5715736 pairs) and 1732544 candidate rows (72858044 pairs) to <root>\output
+predicted pairs: 5715736 (3.299 per S1); S1 with >=1 match: 0.9451
+=== python train_xgb.py x12 m12 (09:58)
+xgb fold 0: 9679946 pairs, best_iter=861 logloss=0.01034 in 168s
+xgb fold 1: 9652581 pairs, best_iter=884 logloss=0.01026 in 179s
+xgb + ensemble files written
+=== python eval_oof.py e12 (10:16)
+S1 entities 2206821, GT pairs 7638365, candidate positives 7525476 (blocking recall 0.9852)
+  excl+thr0.3        F0.5 = 0.97096
+  excl+thr0.4        F0.5 = 0.97443
+  excl+thr0.5        F0.5 = 0.97657
+  excl+thr0.6        F0.5 = 0.97769
+  excl+thr0.7        F0.5 = 0.97784
+  excl+thr0.8        F0.5 = 0.97691
+  thr0.5(no excl)    F0.5 = 0.97532
+  excl+expF          F0.5 = 0.97786
+  owner+thr0.4       F0.5 = 0.97561
+  owner+thr0.5       F0.5 = 0.97745
+  owner+thr0.6       F0.5 = 0.97818
+  owner+expF         F0.5 = 0.97814
+  [owner+thr0.6] US: 0.97977
+  [owner+thr0.6] India: 0.97579
+=== python train_stage2.py e12 s12 (10:20)
+Store(trainsim) built in 148s
+stage-2 frame 11157988 pairs (of 92403415), 73 features, built in 366s
+fold 0: iters=1466 logloss=0.04366
+fold 1: iters=1502 logloss=0.04503
+stage-2 top features: [('prob1', 29408), ('g_p_margin', 17592), ('g_pmax', 1359), ('cs_s1num_mass_same_src', 546), ('sib_addr_same_src', 321), ('g_psum', 201), ('sib_name_same_src', 174), ('sl_same_src_mass', 161), ('g_rank_p', 123), ('cs_num_mass_same_src', 119), ('sib_addr_w', 113), ('blk_margin_p', 102), ('cs_num_mass', 96), ('cs_s1num_mass_other_src', 95), ('num_first_absdiff', 87), ('cs_num_sdiff', 87), ('sib_addr_tset_max', 83), ('g_p_other', 77), ('num_first_dlev', 74), ('cs_num_srel', 72)]
+Store(test) built in 105s
+stage-2 done in 2237s
+=== python eval_oof.py s12 (10:58)
+S1 entities 2206821, GT pairs 7638365, candidate positives 7525476 (blocking recall 0.9852)
+  excl+thr0.3        F0.5 = 0.98180
+  excl+thr0.4        F0.5 = 0.98347
+  excl+thr0.5        F0.5 = 0.98457
+  excl+thr0.6        F0.5 = 0.98534
+  excl+thr0.7        F0.5 = 0.98554
+  excl+thr0.8        F0.5 = 0.98526
+  thr0.5(no excl)    F0.5 = 0.98443
+  excl+expF          F0.5 = 0.98570
+  owner+thr0.4       F0.5 = 0.98443
+  owner+thr0.5       F0.5 = 0.98520
+  owner+thr0.6       F0.5 = 0.98556
+  owner+expF         F0.5 = 0.98575
+  [owner+expF] India: 0.98440
+  [owner+expF] US: 0.98665
+=== python -c 
+import polars as pl
+from config import WORK
+from recalibrate import recalibrate
+recalibrate(pl.read_parquet(WORK + '/test_scored_s12.parquet'), pl.read_parquet(WORK + '/oof_s12.parquet', columns=['s1_row','p_row','prob'])).write_parquet(WORK + '/test_scored_s12r.parquet')
+ (11:00)
+train mismatch rate 0.0993; test rates {'France': 0.0083, 'India': 0.0629, 'US': 0.1284}; factors for unseen countries {'France': 0.08401938116468691}
+S12R_DONE (11:04)

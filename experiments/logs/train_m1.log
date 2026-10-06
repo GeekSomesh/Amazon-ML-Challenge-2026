@@ -1,0 +1,32 @@
+61 features
+fold 0: train 8970022 pairs (0.0806 pos), valid 459164
+  _log_warning("Overriding the parameters from Reference Dataset.")
+[100]	valid_0's binary_logloss: 0.00933076
+[200]	valid_0's binary_logloss: 0.00885107
+[300]	valid_0's binary_logloss: 0.00878655
+[400]	valid_0's binary_logloss: 0.00876805
+fold 0: best_iter=398 logloss=0.00876 in 523s
+fold 1: train 8919577 pairs (0.0810 pos), valid 470457
+[100]	valid_0's binary_logloss: 0.00896362
+[200]	valid_0's binary_logloss: 0.00850976
+[300]	valid_0's binary_logloss: 0.00844664
+[400]	valid_0's binary_logloss: 0.0084473
+fold 1: best_iter=356 logloss=0.00843 in 259s
+top features: [('blk_margin_p', 8777), ('blk_rank_p', 3200), ('blk_gap_pmax', 1104), ('num_first_dlev', 646), ('num_f1', 619), ('n_w2', 536), ('n_jw', 295), ('a_tset', 293), ('a_w2', 272), ('n_join_partial', 235), ('legal_p_empty', 202), ('n_partial', 189), ('n_full', 148), ('legal_eq', 142), ('num_f2', 127), ('n_sorted_lev', 106), ('a_common', 99), ('a_wj', 97), ('blk_cos', 97), ('a_tsort', 79), ('n_len2', 75), ('name_f1_p', 65), ('n_miss', 59), ('n_w1', 59), ('name_fp_s1', 59), ('a_ratio', 56), ('n_join', 53), ('n_tsort', 47), ('n_tset', 45), ('num_first_in', 45)]
+OOF rows 75477914
+  .explode("matched_entity_ids").filter(pl.col("matched_entity_ids") != "")
+S1 entities 1793475, GT pairs 6206987, candidate positives 6083381 (blocking recall 0.9801)
+  excl+thr0.3        F0.5 = 0.97224
+  excl+thr0.4        F0.5 = 0.97477
+  excl+thr0.5        F0.5 = 0.97649
+  excl+thr0.6        F0.5 = 0.97755
+  excl+thr0.7        F0.5 = 0.97802
+  excl+thr0.8        F0.5 = 0.97779
+  thr0.5(no excl)    F0.5 = 0.97544
+  excl+expF          F0.5 = 0.97760
+  owner+thr0.4       F0.5 = 0.97598
+  owner+thr0.5       F0.5 = 0.97740
+  owner+thr0.6       F0.5 = 0.97810
+  owner+expF         F0.5 = 0.97797
+  [owner+thr0.6] India: 0.97342
+  [owner+thr0.6] US: 0.98122

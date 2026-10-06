@@ -1,0 +1,28 @@
+# competition data, intermediate files and submission outputs (not redistributed / too large)
+dataset/
+work/
+output/
+utils/
+*.tsv
+*.parquet
+*.npy
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# models and caches
+*.txt.model
+lgb_*.txt
+xgb_*.json
+.cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

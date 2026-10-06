@@ -1,0 +1,42 @@
+labels: 6083381 positives / 75477914 pairs (GT pairs 6206987, blocking recall 0.98009)
+phase A done in 68s (75477914 pairs)
+Store(trainsim) built in 84s
+  part 0: 2000000 pairs in 19s
+  part 1: 2000000 pairs in 18s
+  part 2: 2000000 pairs in 19s
+  part 3: 2000000 pairs in 21s
+  part 4: 2000000 pairs in 18s
+  part 5: 2000000 pairs in 18s
+  part 6: 2000000 pairs in 18s
+  part 7: 2000000 pairs in 18s
+  part 8: 2000000 pairs in 18s
+  part 9: 2000000 pairs in 18s
+  part 10: 2000000 pairs in 18s
+  part 11: 2000000 pairs in 18s
+  part 12: 2000000 pairs in 18s
+  part 13: 2000000 pairs in 18s
+  part 14: 2000000 pairs in 19s
+  part 15: 2000000 pairs in 18s
+  part 16: 2000000 pairs in 18s
+  part 17: 2000000 pairs in 18s
+  part 18: 2000000 pairs in 20s
+  part 19: 2000000 pairs in 20s
+  part 20: 2000000 pairs in 21s
+  part 21: 2000000 pairs in 18s
+  part 22: 2000000 pairs in 19s
+  part 23: 2000000 pairs in 18s
+  part 24: 2000000 pairs in 18s
+  part 25: 2000000 pairs in 18s
+  part 26: 2000000 pairs in 18s
+  part 27: 2000000 pairs in 19s
+  part 28: 2000000 pairs in 19s
+  part 29: 2000000 pairs in 18s
+  part 30: 2000000 pairs in 18s
+  part 31: 2000000 pairs in 18s
+  part 32: 2000000 pairs in 19s
+  part 33: 2000000 pairs in 19s
+  part 34: 2000000 pairs in 18s
+  part 35: 2000000 pairs in 19s
+  part 36: 2000000 pairs in 19s
+  part 37: 1477914 pairs in 15s
+[trainsim] features done in 786s

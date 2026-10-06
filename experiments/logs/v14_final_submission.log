@@ -1,0 +1,12 @@
+post-filter: dropped 0 of 5864716 selected pairs carrying decoy markers
+wrote 1732544 matching rows (5864716 pairs) and 1732544 candidate rows (8652308 pairs) to <root>\output
+shape: (3, 3)
+┌─────────┬─────────────┬────────────┐
+│ country ┆ pred_per_s1 ┆ empty_frac │
+│ ---     ┆ ---         ┆ ---        │
+│ str     ┆ f64         ┆ f64        │
+╞═════════╪═════════════╪════════════╡
+│ France  ┆ 3.417       ┆ 0.0496     │
+│ India   ┆ 3.358       ┆ 0.0578     │
+│ US      ┆ 3.406       ┆ 0.0569     │
+└─────────┴─────────────┴────────────┘

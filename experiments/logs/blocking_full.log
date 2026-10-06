@@ -1,0 +1,10 @@
+  with pl.StringCache():
+  [trainsim] India: S1=718180 pool=4133346 vocab=3502658 nnz/row=15.2/14.2 build=92s topk=137s cands=30248562 (42.1/S1)
+  [trainsim] US: S1=1075295 pool=6186873 vocab=3729102 nnz/row=11.8/11.7 build=101s topk=227s cands=45229352 (42.1/S1)
+[trainsim] total candidates 75477914 (42.08/S1) in 576s
+trainsim pair recall=0.98009  cands/S1=42.08  by country: {'US': 0.98645, 'India': 0.97057}
+  with pl.StringCache():
+  [test] France: S1=259452 pool=1434993 vocab=500007 nnz/row=10.0/10.2 build=22s topk=23s cands=11209803 (43.2/S1)
+  [test] India: S1=809986 pool=4717565 vocab=3728653 nnz/row=14.7/14.0 build=107s topk=161s cands=34070554 (42.1/S1)
+  [test] US: S1=663106 pool=3817031 vocab=2820888 nnz/row=13.5/13.7 build=66s topk=134s cands=27549834 (41.5/S1)
+[test] total candidates 72830191 (42.04/S1) in 529s

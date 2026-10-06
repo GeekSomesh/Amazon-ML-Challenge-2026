@@ -1,0 +1,33 @@
+=== python rescore_test.py m12 x12 s12 --suffix f (12:45)
+reusing <root>\work\test_scored_e12f.parquet
+Store(test) built in 187s
+Store(test) built in 206s
+stage s12f written (974s)
+train mismatch rate 0.0993; test rates {'India': 0.0629, 'US': 0.1284, 'France': 0.0126}; factors for unseen countries {'France': 0.127243050020046}
+RESCORE_DONE test_scored_s12fr.parquet (1205s)
+S12FR_DONE (13:05)
+=== python stage2_ens.py train e12 s12 (13:05)
+Store(trainsim) built in 126s
+frame 11157988 pairs, 73 feats (396s)
+  xgb fold 0: best_iter=2125 logloss=0.04377 (641s)
+  lgb2 fold 0: iters=1651 logloss=0.04363 (1758s)
+  xgb fold 1: best_iter=1583 logloss=0.04507 (1968s)
+  lgb2 fold 1: iters=1606 logloss=0.04479 (3587s)
+  [s2 (lgb)    ] owner+expF F0.5 = 0.98575
+  [xgb         ] owner+expF F0.5 = 0.98574
+  [lgb2        ] owner+expF F0.5 = 0.98580
+  [s2+xgb      ] owner+expF F0.5 = 0.98578
+  [s2+lgb2     ] owner+expF F0.5 = 0.98580
+  [s2+xgb+lgb2 ] owner+expF F0.5 = 0.98581
+ENS_TRAIN_DONE (3760s)
+=== python stage2_ens.py test e12f s12f s12fens xb (14:08)
+Store(test) built in 200s
+ENS_TEST_DONE test_scored_s12fens (2358s)
+=== python -c 
+import polars as pl
+from config import WORK
+from recalibrate import recalibrate
+recalibrate(pl.read_parquet(WORK + '/test_scored_s12fens.parquet'), pl.read_parquet(WORK + '/oof_s12ens.parquet', columns=['s1_row','p_row','prob'])).write_parquet(WORK + '/test_scored_s12fensr.parquet')
+ (14:47)
+train mismatch rate 0.0991; test rates {'US': 0.128, 'France': 0.0125, 'India': 0.0629}; factors for unseen countries {'France': 0.12661104576936286}
+V14_DONE (14:51)

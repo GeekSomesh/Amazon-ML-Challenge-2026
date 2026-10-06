@@ -1,0 +1,28 @@
+scored 72830191 test pairs in 1225s
+shape: (3, 3)
+┌─────────┬─────────────┬────────────┐
+│ country ┆ pred_per_s1 ┆ empty_frac │
+│ ---     ┆ ---         ┆ ---        │
+│ str     ┆ f64         ┆ f64        │
+╞═════════╪═════════════╪════════════╡
+│ France  ┆ 3.272733    ┆ 0.056303   │
+│ India   ┆ 3.28531     ┆ 0.060348   │
+│ US      ┆ 3.360458    ┆ 0.05732    │
+└─────────┴─────────────┴────────────┘
+wrote 1732544 matching rows (5738512 pairs) and 1732544 candidate rows (72830191 pairs) to <root>\output
+predicted pairs: 5738512 (3.312 per S1); S1 with >=1 match: 0.9414
+ML Challenge 2026 — submission validator
+  test dir: dataset/test
+  required S1 entities: 1732544
+  matching_results.tsv: 1732544 rows (101498 empty, 1631046 non-empty).
+  candidate_pairs.tsv: 1732544 rows (2 empty, 1732542 non-empty).
+
+WARNING: ID-existence check is OFF (the default) — not checking that matched/candidate IDs exist in the test set. Every other rule is still checked. Re-run with --check-ids to enable it (needs test_source2/3.tsv; uses more memory). A nonexistent ID only lowers your score, never rejects your submission.
+PASS — no blocking issues found. Safe to submit.
+Store(trainsim) built in 81s
+stage-2 frame 8300290 pairs (of 75477914), 40 features, built in 223s
+fold 0: iters=608 logloss=0.05853
+fold 1: iters=701 logloss=0.05654
+stage-2 top features: [('prob1', 28946), ('g_p_margin', 3895), ('g_pmax', 628), ('g_psum', 124), ('sib_addr_same_src', 118), ('g_rank_p', 79), ('sib_addr_tset_max', 77), ('a_tset', 66), ('blk_margin_p', 63), ('g_ssum_others', 57), ('g_smax', 56), ('sib_addr_w', 52), ('g_p_other', 51), ('sib_name_same_src', 47), ('blk_cos', 39), ('a_w1', 37), ('name_fp_s1', 36), ('sib_addr_ratio_max', 34), ('sib_name_w', 31), ('g_ssum_excl', 29)]
+Store(test) built in 117s
+stage-2 done in 1527s

@@ -1,0 +1,30 @@
+=== python emb_pairs.py trainsim (17:17)
+wrote <root>\work\emb_feat_trainsim.parquet: 11157988 pairs; emb_cos mean 0.832
+=== python stage2_emb.py train (17:18)
+frame 11157988 pairs, 77 features (10s)
+fold 0: iters=1664 logloss=0.04215 (504s)
+fold 1: iters=1497 logloss=0.04323 (944s)
+emb feature ranks: [(7, 'emb_gap_p'), (16, 'emb_cos'), (18, 'emb_rank_s1'), (37, 'emb_gap_s1')]
+  [s12 (no emb)        ] owner+expF F0.5 = 0.98575
+  [s12m (with LaBSE)   ] owner+expF F0.5 = 0.98613
+  [s12ens              ] owner+expF F0.5 = 0.98581
+  [(s12m + s12ens)/2   ] owner+expF F0.5 = 0.98601
+     India prob: 0.98440
+     India pm: 0.98492
+     US prob: 0.98665
+     US pm: 0.98694
+EMB_TRAIN_DONE (1038s)
+=== python emb_pairs.py test e12g (17:36)
+embedded 2255 new names
+wrote <root>\work\emb_feat_test.parquet: 8588229 pairs; emb_cos mean 0.819
+=== python stage2_emb.py test e12g s12mg (17:37)
+Store(test) built in 66s
+EMB_TEST_DONE test_scored_s12mg (372s)
+=== python -c 
+import polars as pl
+from config import WORK
+from recalibrate import recalibrate
+recalibrate(pl.read_parquet(WORK + '/test_scored_s12mg.parquet'), pl.read_parquet(WORK + '/oof_s12m.parquet', columns=['s1_row','p_row','prob'])).write_parquet(WORK + '/test_scored_s12mgr.parquet')
+ (17:43)
+train mismatch rate 0.1002; test rates {'India': 0.0638, 'US': 0.1286, 'France': 0.0088}; factors for unseen countries {'France': 0.08783298119703757}
+EMB2_DONE (17:45)

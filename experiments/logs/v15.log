@@ -1,0 +1,62 @@
+=== python prepare.py test (16:20)
+test s1: 1732544 rows in 12s
+test s2: 4887273 rows in 110s
+test s3: 5082316 rows in 95s
+  [test] France: stripping injected address tokens ['atlantique', 'gironde', 'nord', 'pas', 'q']
+  [test] India: stripping injected address tokens ['divreportingcircle', 'door', 'region']
+=== python blocking.py test --k_fwd 20 --k_rev 6 --max_df 3000 --char_w 0.5 --combo_w 1.0 (16:24)
+<root>\code\business_entity_resolution\src\blocking.py:82: DeprecationWarning: the string cache has been replaced by pl.Categories
+  [test] France: S1=259452 pool=1434993 vocab=794716 nnz/row=12.3/12.2 build=32s topk=28s cands=11181022 (43.1/S1)
+  [test] India: S1=809986 pool=4717565 vocab=5395572 nnz/row=18.1/17.4 build=160s topk=175s cands=33890473 (41.8/S1)
+  [test] US: S1=663106 pool=3817031 vocab=5266251 nnz/row=16.7/16.2 build=107s topk=130s cands=27786546 (41.9/S1)
+[test] total candidates 72858041 (42.05/S1) in 652s
+=== python build_features.py test test_cand.parquet (16:35)
+phase A done in 90s (72858041 pairs)
+Store(test) built in 185s
+(Deprecated in version 1.42.1)
+  part 0: 2000000 pairs in 55s
+  part 1: 2000000 pairs in 63s
+  part 2: 2000000 pairs in 25s
+  part 3: 2000000 pairs in 18s
+  part 4: 2000000 pairs in 18s
+  part 5: 2000000 pairs in 15s
+  part 6: 2000000 pairs in 14s
+  part 7: 2000000 pairs in 15s
+  part 8: 2000000 pairs in 14s
+  part 9: 2000000 pairs in 14s
+  part 10: 2000000 pairs in 15s
+  part 11: 2000000 pairs in 14s
+  part 12: 2000000 pairs in 14s
+  part 13: 2000000 pairs in 14s
+  part 14: 2000000 pairs in 15s
+  part 15: 2000000 pairs in 16s
+  part 16: 2000000 pairs in 15s
+  part 17: 2000000 pairs in 16s
+  part 18: 2000000 pairs in 17s
+  part 19: 2000000 pairs in 16s
+  part 20: 2000000 pairs in 18s
+  part 21: 2000000 pairs in 18s
+  part 22: 2000000 pairs in 17s
+  part 23: 2000000 pairs in 20s
+  part 24: 2000000 pairs in 16s
+  part 25: 2000000 pairs in 15s
+  part 26: 2000000 pairs in 16s
+  part 27: 2000000 pairs in 27s
+  part 28: 2000000 pairs in 21s
+  part 29: 2000000 pairs in 21s
+  part 30: 2000000 pairs in 19s
+  part 31: 2000000 pairs in 24s
+  part 32: 2000000 pairs in 18s
+  part 33: 2000000 pairs in 23s
+  part 34: 2000000 pairs in 22s
+  part 35: 2000000 pairs in 22s
+  part 36: 858041 pairs in 8s
+[test] features done in 915s
+=== python rescore_test.py m12 x12 s12 --suffix g (16:52)
+lgb m12: 72858041 pairs (320s)
+ensemble e12g written (928s)
+Store(test) built in 80s
+stage s12g written (1389s)
+train mismatch rate 0.0993; test rates {'India': 0.0629, 'France': 0.0083, 'US': 0.1284}; factors for unseen countries {'France': 0.08400860063921013}
+RESCORE_DONE test_scored_s12gr.parquet (1518s)
+S12GR_DONE (17:17)

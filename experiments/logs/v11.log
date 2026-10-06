@@ -1,0 +1,12 @@
+labels: 6125184 positives / 78609579 pairs (GT pairs 6206987, blocking recall 0.98682)
+phase A done in 134s (78609579 pairs)
+Store(trainsim) built in 123s
+  part 0: 2000000 pairs in 28s
+  part 1: 2000000 pairs in 27s
+  part 2: 2000000 pairs in 20s
+  part 3: 2000000 pairs in 21s
+  part 4: 2000000 pairs in 20s
+  part 5: 2000000 pairs in 23s
+  part 6: 2000000 pairs in 32s
+  part 7: 2000000 pairs in 22s
+  part 8: 2000000 pairs in 22s

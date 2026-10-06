@@ -1,0 +1,15 @@
+  [train] India: stripping injected address tokens ['door', 'region']
+test s1: 1732544 rows in 9s
+test s2: 4887273 rows in 71s
+test s3: 5082316 rows in 70s
+  [test] France: stripping injected address tokens ['atlantique', 'gironde', 'nord', 'pas', 'q']
+  [test] India: stripping injected address tokens ['divreportingcircle', 'door', 'region']
+trainsim: kept 1793475/2206821 S1 entities; pool/S1 = 5.754
+  [trainsim] India: S1=718180 pool=4133346 vocab=4860499 nnz/row=18.6/17.3 build=121s topk=168s cands=30056333 (41.9/S1)
+  [trainsim] US: S1=1075295 pool=6186873 vocab=6734200 nnz/row=15.0/13.9 build=132s topk=240s cands=45551485 (42.4/S1)
+[trainsim] total candidates 75607818 (42.16/S1) in 684s
+trainsim pair recall=0.98716  cands/S1=42.16  by country: {'India': 0.98494, 'US': 0.98864}
+  [test] France: S1=259452 pool=1434993 vocab=794716 nnz/row=12.3/12.2 build=29s topk=28s cands=11181022 (43.1/S1)
+  [test] India: S1=809986 pool=4717565 vocab=5395572 nnz/row=18.1/17.4 build=125s topk=197s cands=33890473 (41.8/S1)
+  [test] US: S1=663106 pool=3817031 vocab=5266251 nnz/row=16.7/16.2 build=85s topk=144s cands=27786549 (41.9/S1)
+[test] total candidates 72858044 (42.05/S1) in 629s

@@ -1,0 +1,30 @@
+=== python emb_sib.py trainsim (17:45)
+wrote <root>\work\emb_sib_trainsim.parquet: 10847812 pairs with siblings (of 11157988)
+=== python stage2_emb.py train (17:46)
+frame 11157988 pairs, 80 features (6s)
+fold 0: iters=1506 logloss=0.04152 (349s)
+fold 1: iters=941 logloss=0.04284 (608s)
+emb feature ranks: [(6, 'emb_sib_same_src'), (7, 'emb_gap_p'), (16, 'emb_sib_w'), (23, 'emb_rank_s1'), (25, 'emb_cos'), (29, 'emb_sib_max'), (46, 'emb_gap_s1')]
+  [s12 (no emb)        ] owner+expF F0.5 = 0.98575
+  [s12n (with LaBSE)   ] owner+expF F0.5 = 0.98619
+  [s12ens              ] owner+expF F0.5 = 0.98581
+  [(s12n + s12ens)/2   ] owner+expF F0.5 = 0.98605
+     India prob: 0.98440
+     India pm: 0.98494
+     US prob: 0.98665
+     US pm: 0.98702
+EMB_TRAIN_DONE (698s)
+=== python emb_sib.py test e12g (17:58)
+warning: 2794 pool names without embedding (treated as no-sibling)
+wrote <root>\work\emb_sib_test.parquet: 8336329 pairs with siblings (of 8588229)
+=== python stage2_emb.py test e12g s12ng (17:59)
+Store(test) built in 65s
+EMB_TEST_DONE test_scored_s12ng (342s)
+=== python -c 
+import polars as pl
+from config import WORK
+from recalibrate import recalibrate
+recalibrate(pl.read_parquet(WORK + '/test_scored_s12ng.parquet'), pl.read_parquet(WORK + '/oof_s12n.parquet', columns=['s1_row','p_row','prob'])).write_parquet(WORK + '/test_scored_s12ngr.parquet')
+ (18:05)
+train mismatch rate 0.1005; test rates {'India': 0.0639, 'US': 0.1285, 'France': 0.0088}; factors for unseen countries {'France': 0.08771262323943797}
+EMB3_DONE (18:06)

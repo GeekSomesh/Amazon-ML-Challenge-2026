@@ -1,0 +1,23 @@
+# Python 3.11 - install with:  pip install -r requirements.txt
+# torch: use the CUDA build that matches the local NVIDIA driver (tested: 2.12.0 + CUDA 13.2, see pytorch.org)
+
+# data handling
+polars==1.44.2
+pyarrow==23.0.1
+numpy==2.2.6
+scipy==1.15.3
+
+# text processing and features
+rapidfuzz==3.14.5
+anyascii==0.3.3
+numba==0.65.1
+sparse_dot_topn==1.2.0
+
+# models
+lightgbm==4.6.0
+xgboost==3.2.0
+
+# multilingual embeddings (LaBSE)
+torch==2.12.0
+transformers==5.8.1
+sentence-transformers==5.5.1

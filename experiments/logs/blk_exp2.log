@@ -1,0 +1,20 @@
+build 72s vocab=3294073 nnz/row 11.9 10.4
+fwd 63s
+rev 32s
+India max_df=3000 kf=20 kr=6 cw=0.0: union recall=0.9646 cands/S1=41.9
+   prune r1<=5 or rp<=2: recall=0.9414 cands/S1=12.2
+   prune r1<=8 or rp<=2: recall=0.9468 cands/S1=14.0
+   prune r1<=10 or rp<=3: recall=0.9534 cands/S1=20.3
+   prune r1<=12 or rp<=3: recall=0.9551 cands/S1=21.7
+   prune r1<=15 or rp<=4: recall=0.9595 cands/S1=28.6
+   prune r1<=20 or rp<=6: recall=0.9646 cands/S1=41.9
+build 120s vocab=3502658 nnz/row 15.2 14.2
+fwd 92s
+rev 53s
+India max_df=3000 kf=20 kr=6 cw=0.5: union recall=0.9706 cands/S1=42.1
+   prune r1<=5 or rp<=2: recall=0.9471 cands/S1=12.2
+   prune r1<=8 or rp<=2: recall=0.9527 cands/S1=14.0
+   prune r1<=10 or rp<=3: recall=0.9592 cands/S1=20.4
+   prune r1<=12 or rp<=3: recall=0.9611 cands/S1=21.8
+   prune r1<=15 or rp<=4: recall=0.9654 cands/S1=28.8
+   prune r1<=20 or rp<=6: recall=0.9706 cands/S1=42.1

@@ -1,0 +1,114 @@
+=== python make_submission.py s12r ownerF e12 (11:05)
+post-filter: dropped 0 of 5859151 selected pairs carrying decoy markers
+wrote 1732544 matching rows (5859151 pairs) and 1732544 candidate rows (8588433 pairs) to <root>\output
+shape: (3, 3)
+┌─────────┬─────────────┬────────────┐
+│ country ┆ pred_per_s1 ┆ empty_frac │
+│ ---     ┆ ---         ┆ ---        │
+│ str     ┆ f64         ┆ f64        │
+╞═════════╪═════════════╪════════════╡
+│ France  ┆ 3.394       ┆ 0.0522     │
+│ India   ┆ 3.358       ┆ 0.0578     │
+│ US      ┆ 3.406       ┆ 0.0569     │
+└─────────┴─────────────┴────────────┘
+ML Challenge 2026 — submission validator
+  test dir: dataset/test
+  required S1 entities: 1732544
+  matching_results.tsv: 1732544 rows (98140 empty, 1634404 non-empty).
+  candidate_pairs.tsv: 1732544 rows (30476 empty, 1702068 non-empty).
+
+WARNING: ID-existence check is OFF (the default) — not checking that matched/candidate IDs exist in the test set. Every other rule is still checked. Re-run with --check-ids to enable it (needs test_source2/3.tsv; uses more memory). A nonexistent ID only lowers your score, never rejects your submission.
+PASS — no blocking issues found. Safe to submit.
+SNAP v12_s12r_candidates_reduced (11:06)
+=== python train_stage2.py s12 s13 (11:06)
+Store(trainsim) built in 149s
+stage-2 frame 9630205 pairs (of 92403415), 72 features, built in 560s
+fold 0: iters=808 logloss=0.04818
+fold 1: iters=560 logloss=0.04981
+stage-2 top features: [('prob1', 28956), ('g_p_margin', 4561), ('g_pmax', 2195), ('g_rank_p', 101), ('g_psum', 46), ('blk_margin_p', 37), ('n_join_full', 30), ('g_smax', 29), ('sl_same_src_mass', 29), ('sib_name_w', 26), ('g_p_other', 25), ('cs_s1num_mass', 23), ('name_fp_s1', 23), ('name_fp_p', 22), ('cs_s1num_mass_other_src', 21), ('sib_name_same_src', 20), ('cs_s1num_mass_same_src', 20), ('g_ssum_others', 19), ('cs_name_mass', 18), ('sib_addr_same_src', 18)]
+Store(test) built in 134s
+stage-2 done in 2047s
+=== python eval_oof.py s13 (11:40)
+S1 entities 2206821, GT pairs 7638365, candidate positives 7525476 (blocking recall 0.9852)
+  excl+thr0.3        F0.5 = 0.98166
+  excl+thr0.4        F0.5 = 0.98334
+  excl+thr0.5        F0.5 = 0.98454
+  excl+thr0.6        F0.5 = 0.98539
+  excl+thr0.7        F0.5 = 0.98552
+  excl+thr0.8        F0.5 = 0.98522
+  thr0.5(no excl)    F0.5 = 0.98449
+  excl+expF          F0.5 = 0.98572
+  owner+thr0.4       F0.5 = 0.98443
+  owner+thr0.5       F0.5 = 0.98520
+  owner+thr0.6       F0.5 = 0.98552
+  owner+expF         F0.5 = 0.98574
+  [owner+expF] India: 0.98434
+  [owner+expF] US: 0.98668
+=== python prepare.py test (11:44)
+test s1: 1732544 rows in 11s
+test s2: 4887273 rows in 88s
+test s3: 5082316 rows in 92s
+  [test] France: stripping injected address tokens ['atlantique', 'gironde', 'nord', 'pas', 'q']
+  [test] India: stripping injected address tokens ['divreportingcircle', 'door', 'region']
+=== python blocking.py test --k_fwd 20 --k_rev 6 --max_df 3000 --char_w 0.5 --combo_w 1.0 (11:48)
+<root>\code\business_entity_resolution\src\blocking.py:82: DeprecationWarning: the string cache has been replaced by pl.Categories
+  [test] France: S1=259452 pool=1434993 vocab=776588 nnz/row=12.1/11.7 build=21s topk=24s cands=11182164 (43.1/S1)
+  [test] India: S1=809986 pool=4717565 vocab=5395572 nnz/row=18.1/17.4 build=116s topk=171s cands=33890475 (41.8/S1)
+  [test] US: S1=663106 pool=3817031 vocab=5266251 nnz/row=16.7/16.2 build=76s topk=125s cands=27786548 (41.9/S1)
+[test] total candidates 72859187 (42.05/S1) in 550s
+=== python build_features.py test test_cand.parquet (11:57)
+phase A done in 58s (72859187 pairs)
+Store(test) built in 95s
+(Deprecated in version 1.42.1)
+  part 0: 2000000 pairs in 23s
+  part 1: 2000000 pairs in 22s
+  part 2: 2000000 pairs in 23s
+  part 3: 2000000 pairs in 23s
+  part 4: 2000000 pairs in 22s
+  part 5: 2000000 pairs in 21s
+  part 6: 2000000 pairs in 21s
+  part 7: 2000000 pairs in 21s
+  part 8: 2000000 pairs in 21s
+  part 9: 2000000 pairs in 23s
+  part 10: 2000000 pairs in 21s
+  part 11: 2000000 pairs in 21s
+  part 12: 2000000 pairs in 21s
+  part 13: 2000000 pairs in 22s
+  part 14: 2000000 pairs in 21s
+  part 15: 2000000 pairs in 21s
+  part 16: 2000000 pairs in 21s
+  part 17: 2000000 pairs in 21s
+  part 18: 2000000 pairs in 22s
+  part 19: 2000000 pairs in 22s
+  part 20: 2000000 pairs in 22s
+  part 21: 2000000 pairs in 22s
+  part 22: 2000000 pairs in 21s
+  part 23: 2000000 pairs in 21s
+  part 24: 2000000 pairs in 21s
+  part 25: 2000000 pairs in 21s
+  part 26: 2000000 pairs in 21s
+  part 27: 2000000 pairs in 21s
+  part 28: 2000000 pairs in 22s
+  part 29: 2000000 pairs in 22s
+  part 30: 2000000 pairs in 21s
+  part 31: 2000000 pairs in 21s
+  part 32: 2000000 pairs in 22s
+  part 33: 2000000 pairs in 26s
+  part 34: 2000000 pairs in 24s
+  part 35: 2000000 pairs in 21s
+  part 36: 859187 pairs in 9s
+[test] features done in 884s
+=== python rescore_test.py m12 x12 s12 s13 --suffix f (12:13)
+lgb m12: 72859187 pairs (498s)
+ensemble e12f written (1518s)
+Store(test) built in 121s
+Traceback (most recent call last):
+  File "<root>\code\business_entity_resolution\src\rescore_test.py", line 87, in <module>
+    main(sys.argv[1:])
+  File "<root>\code\business_entity_resolution\src\rescore_test.py", line 77, in main
+    sc = stage_scores(tag, sc)
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "<root>\code\business_entity_resolution\src\rescore_test.py", line 50, in stage_scores
+    assert feats == models[0].feature_name() or len(feats) == models[0].num_feature(), "stage feature mismatch"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: stage feature mismatch
